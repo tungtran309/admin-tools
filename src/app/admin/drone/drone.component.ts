@@ -13,6 +13,7 @@ export interface DroneData {
     battery : string;
     flight_time : string;
     speed : string;
+    image : string;
 }
 
 @Component({
@@ -23,7 +24,7 @@ export interface DroneData {
 
 
 export class DroneComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['select', 'id', 'model', 'height', 'weight', 'battery', 'flight_time', 'speed'];
+  displayedColumns = ['select', 'id', 'model', 'height', 'weight', 'battery', 'flight_time', 'speed', 'image'];
   dataSource: Array<DroneData>;
   dataTable : Array<DroneData>
   selection: SelectionModel<DroneData>;
@@ -36,18 +37,18 @@ export class DroneComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.selection = new SelectionModel<DroneData>(true, []);
     this.dataSource = [
-      {id : 1, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
-      {id : 2, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
-      {id : 3, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
-      {id : 4, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
-      {id : 5, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
-      {id : 6, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
-      {id : 7, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
-      {id : 8, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s'},
+      {id : 1, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
+      {id : 2, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
+      {id : 3, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
+      {id : 4, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
+      {id : 5, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
+      {id : 6, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
+      {id : 7, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
+      {id : 8, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
       //{}
     ];
     this.dataTable = this.dataSource;
-    this.droneSearch = {id : 0, model : '', height : '', weight : '', battery : '', flight_time : '', speed : ''};
+    this.droneSearch = {id : 0, model : '', height : '', weight : '', battery : '', flight_time : '', speed : '', image : ''};
   }
 
   ngAfterViewInit() {
