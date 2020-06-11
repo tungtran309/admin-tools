@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserAddDialog } from './user-add/userAdd.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { DataBaseService } from '../datastore/database.service';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     FormsModule
   ],
-  declarations: [UserComponent, UserAddDialog]
+  declarations: [UserComponent, UserAddDialog],
+  providers : [DataBaseService]
 })
 export class UserModule {}

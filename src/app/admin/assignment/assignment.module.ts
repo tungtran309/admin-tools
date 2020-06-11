@@ -14,6 +14,7 @@ import { AssignmentComponent } from './assignment.component';
 import { AssignmentRoutingModule } from './assignment-routing.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DataBaseService } from '../datastore/database.service';
 
 @NgModule({
   imports: [
@@ -34,6 +35,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule
   ],
   declarations: [AssignmentComponent],
-  providers : [DatePipe]
+  providers : [DatePipe, DataBaseService]
 })
 export class AssignmentModule {}
