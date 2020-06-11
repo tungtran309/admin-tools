@@ -16,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 
 export class UserComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['select', 'id', 'name', 'age', 'gender', 'department', 'occupation'];
+  displayedColumns = ['id', 'name', 'age', 'gender', 'department', 'occupation'];
   dataSource: Array<UserData>;
   dataTable : MatTableDataSource<UserData>
   selection: SelectionModel<UserData>;
@@ -49,7 +49,8 @@ export class UserComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    
+    this.dataTable.paginator = this.paginator;
+    this.dataTable.sort = this.sort;
   }
 
   applyFilter() {

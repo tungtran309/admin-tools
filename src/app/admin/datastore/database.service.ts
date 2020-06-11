@@ -20,6 +20,17 @@ export interface AssignmentData {
   status : number;
 }
 
+export interface DroneData {
+  id : number;
+  model : string;
+  height : number;
+  weight : number;
+  battery : number;
+  flight_time : number;
+  speed : number;
+  image : string;
+}
+
 
 
 
@@ -64,6 +75,15 @@ export class DataBaseService {
     ,{id : 14, name : 'Nguyễn Thị Y', age : 26, gender : "Nữ", department : "Ba Đình", occupation : "Thợ điện"}
     ,{id : 15, name : 'Nguyễn Văn Z', age : 22, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
     ,{id : 16, name : 'Cao Thị E', gender : "Nữ", age : 28, department : "Hai Bà Trưng", occupation : "Quản trị viên"}]
+  droneList : Array<DroneData> = 
+    [{id : 1, model : 'Intel Aero 4', height : 150, weight : 1000, battery : 15000, flight_time : 2000, speed : 10, image : 'assets/images/drone1.jpg'},
+    {id : 2, model : 'DJI Phantom 4', height : 200, weight : 900, battery : 10000, flight_time : 50, speed : 11, image : 'assets/images/drone2.jpeg'},
+    {id : 3, model : 'Mini Drone Visual XS809HW', height : 170, weight : 1100, battery : 8000, flight_time : 90, speed : 10, image : 'assets/images/drone3.jpg'},
+    {id : 4, model : 'GoPro Karma 3D', height : 210, weight : 1050, battery : 9000, flight_time : 200, speed : 15, image : 'assets/images/drone4.jpeg'},
+    {id : 5, model : 'Futuristic Drone 1', height : 200, weight : 1200, battery : 7000, flight_time : 180, speed : 13, image : 'assets/images/drone5.jpeg'},
+    {id : 6, model : 'DJI Mavic Pro 2', height : 165, weight : 800, battery : 10000, flight_time : 0, speed : 14, image : 'assets/images/drone6.jpeg'},
+    {id : 7, model : 'CGAxis 3D', height : 178, weight : 1500, battery : 12000, flight_time : 500, speed : 10, image : 'assets/images/drone7.jpeg'},
+    {id : 8, model : 'Quadcopter V1', height : 190 , weight : 1300, battery : 9500, flight_time : 400, speed : 11, image : 'assets/images/drone8.jpeg'}];
   constructor() {
 
   }
@@ -74,6 +94,19 @@ export class DataBaseService {
 
   getUserData() : Array<UserData> {
     return this.userList;
+  }
+
+  getDroneData() : Array<DroneData> {
+    return this.droneList;
+  }
+
+  getUserName(id : number) : String {
+    for (var user of this.userList) {
+      if (user.id == id) {
+        return user.name;
+      }
+    }
+    return "";
   }
 
   addUser(newUser : UserData) {

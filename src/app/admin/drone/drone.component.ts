@@ -3,18 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { DataBaseService, DroneData } from '../datastore/database.service';
 
 
-export interface DroneData {
-    id : number;
-    model : string;
-    height : string;
-    weight : string;
-    battery : string;
-    flight_time : string;
-    speed : string;
-    image : string;
-}
+
 
 @Component({
   selector: 'drone-tables',
@@ -24,48 +16,41 @@ export interface DroneData {
 
 
 export class DroneComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['select', 'id', 'model', 'height', 'weight', 'battery', 'flight_time', 'speed', 'image'];
+  displayedColumns = ['id', 'model', 'height', 'weight', 'battery', 'flight_time', 'speed', 'image'];
   dataSource: Array<DroneData>;
-  dataTable : Array<DroneData>
+  dataTable : MatTableDataSource<DroneData>
   selection: SelectionModel<DroneData>;
   droneSearch : DroneData;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor() {}
+  constructor(public dataBase : DataBaseService) {}
 
   ngOnInit() {
     this.selection = new SelectionModel<DroneData>(true, []);
-    this.dataSource = [
-      {id : 1, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      {id : 2, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      {id : 3, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      {id : 4, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      {id : 5, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      {id : 6, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      {id : 7, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      {id : 8, model : 'Intel Aero 4', height : '200 mm', weight : '1000g', battery : '4000 mAh', flight_time : '20 min', speed : '15 m/s', image : 'assets/images/drone1.jpg'},
-      //{}
-    ];
-    this.dataTable = this.dataSource;
-    this.droneSearch = {id : 0, model : '', height : '', weight : '', battery : '', flight_time : '', speed : '', image : ''};
+    this.dataSource = this.dataBase.getDroneData();
+    this.dataTable = new MatTableDataSource(this.dataSource);
+    this.droneSearch = {id : 0, model : '', height : 0, weight : 0, battery : 0, flight_time : 0, speed : 0, image : ''};
   }
 
   ngAfterViewInit() {
+    this.dataTable.paginator = this.paginator;
+    this.dataTable.sort = this.sort;
   }
 
   applyFilter() {
     console.log(this.droneSearch);
-    this.dataTable = [];
+    this.dataTable.data = [];
     for (var row of this.dataSource) {
         let isMatched : boolean = true;
         if (!row.model.includes(this.droneSearch.model) && this.droneSearch.model != "") {
             isMatched = false;
         }
         if (isMatched) {
-          this.dataTable.push(row);
+          this.dataTable.data.push(row);
         }
     }
+    this.dataTable._updateChangeSubscription();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

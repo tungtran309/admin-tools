@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DroneComponent } from './drone.component';
 import { DronesRoutingModule } from './drone-routing.module';
 import { FormsModule } from '@angular/forms';
+import { DataBaseService } from '../datastore/database.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     MatCheckboxModule,
     FormsModule
   ],
-  declarations: [DroneComponent]
+  declarations: [DroneComponent],
+  providers : [DataBaseService]
 })
 export class DroneModule {}
