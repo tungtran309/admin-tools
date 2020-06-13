@@ -25,7 +25,7 @@ export const childRoutes = [
   {
     path: 'image',
     loadChildren: () =>
-      import('./mat-grid/mat-grid.module').then(m => m.MatGridModule),
+      import('./image/image.module').then(m => m.ImageModule),
     data: { icon: 'image', text: 'Quản lý ảnh chụp' }
   }//,
   // {

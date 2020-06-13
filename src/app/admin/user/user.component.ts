@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
-import { UserAddDialog, UserData } from './user-add/userAdd.component';
-import { DataBaseService } from '../datastore/database.service';
+import { UserAddDialog } from './user-add/userAdd.component';
+import { DataBaseService, UserData } from '../datastore/database.service';
 import { MatTableDataSource } from '@angular/material/table';
 
 

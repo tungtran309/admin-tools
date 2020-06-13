@@ -10,6 +10,14 @@ export interface UserData {
   occupation : string;
 }
 
+export interface ImageData {
+  imgSrc: string;
+  name: string;
+  description: string;
+  date: string;
+  location: string;
+}
+
 export interface AssignmentData {
   userId : number;
   startDate : string;

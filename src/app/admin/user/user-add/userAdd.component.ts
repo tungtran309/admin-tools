@@ -1,15 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserData } from '../../datastore/database.service';
 
 
-export interface UserData {
-  id : number;
-  name : string;
-  age : number;
-  gender : string;
-  department : string;
-  occupation : string;
-}
 
 @Component({
   selector: 'user-add',

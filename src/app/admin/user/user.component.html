@@ -12,7 +12,7 @@
     <input matInput (keyup)="applyFilter()" [(ngModel)]='userSearch.occupation' placeholder="Nhập chức vụ">
   </mat-form-field>
   <div>
-  <button mat-raised-button class="search-form" color="primary" (click)="openDialog()">Add User</button>
+  <button mat-raised-button class="search-form" color="primary" (click)="openDialog()">Thêm người dùng</button>
   </div>
   <table mat-table [dataSource]="dataTable" matSort class="w-100">
     <ng-container matColumnDef="id">

@@ -1,0 +1,15 @@
+@import '~src/scss/variables';
+.location-icon {
+  color: $primary-color;
+}
+
+.imgs {
+  height: 250px;
+  width: 320px;
+}
+
+.example-card {
+  max-width: 300px;
+  margin-bottom: 50px;
+  display: inline-block !important;
+}
