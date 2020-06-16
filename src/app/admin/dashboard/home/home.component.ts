@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.places = [
       {
-        imgSrc: 'assets/images/incident1.jpeg',
+        imgSrc: 'assets/images/image1.jpeg',
         name: 'Cột điện hỏng',
         description: `Sét đánh vào đường điện cao thế`,
         date: '12/05/2020',
