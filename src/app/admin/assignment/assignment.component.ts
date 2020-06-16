@@ -53,7 +53,8 @@ export class AssignmentComponent implements OnInit, AfterViewInit {
   selection: SelectionModel<AssignmentData>;
   startDate : Date;
   endDate : Date;
-  userId : number;
+  searchUserId : string;
+  seachStatus : number;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -65,6 +66,8 @@ export class AssignmentComponent implements OnInit, AfterViewInit {
     this.selection = new SelectionModel<AssignmentData>(true, []);
     this.dataSource = this.dataBase.getAssignmentData();
     this.dataTable = new MatTableDataSource(this.dataSource);
+    this.searchUserId = "";
+    this.seachStatus = -1;
   }
 
   ngAfterViewInit() {
@@ -85,17 +88,24 @@ export class AssignmentComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter() {
-    console.log(this.userId);
+    console.log(this.searchUserId);
     let newData = [];
     for (var row of this.dataSource) {
-        if (this.userId == row.userId || this.userId == null) {
-          if (this.isSmaller(this.startDate, row.startDate) && this.isLarger(this.endDate, row.startDate)) {
-              newData.push(row);
+        if (this.seachStatus == row.status || this.seachStatus == -1) {
+          if (+this.searchUserId == row.userId || this.searchUserId == "") {
+            if (this.isSmaller(this.startDate, row.startDate) && this.isLarger(this.endDate, row.startDate)) {
+                newData.push(row);
+            }
           }
         }
     }
     this.dataTable.data = newData;
     this.dataTable._updateChangeSubscription();
+  }
+
+  applyFilterByUserId(seachId) {
+    this.searchUserId = seachId;
+    this.applyFilter();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

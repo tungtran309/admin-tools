@@ -14,16 +14,14 @@
 <div class="page-wrapper" fxLayout="row wrap">
   <mat-card fxFlex.lg="33%" fxFlex.lt-lg="66%" fxFlex.xs="100%" *ngFor="let item of images">
     <img mat-card-image [src]="item.imgSrc" class="imgs">
-    <mat-card-header style="justify-content: center">
-      <mat-card-title>
-        <h3 class="m-0">{{item.name}}</h3>
-      </mat-card-title>
-    </mat-card-header>
     <mat-card-content>
-      Miêu tả : {{item.description}}
+      Cột : {{item.columnId}}
     </mat-card-content>
     <mat-card-content>
       Ngày : {{item.date}}
+    </mat-card-content>
+    <mat-card-content>
+      Drone : {{this.dataBase.getDroneName(item.droneId)}}
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>

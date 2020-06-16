@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DataBaseService, DroneData } from '../datastore/database.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DroneAddDialog } from './drone-add/droneAdd.component';
 
 
 
@@ -24,7 +26,23 @@ export class DroneComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(public dataBase : DataBaseService) {}
+  constructor(public dialog: MatDialog,
+              public dataBase : DataBaseService) {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DroneAddDialog, {
+      width: '540px',
+      height: '360px',
+      data : {id : "", model : "", height : 0, weight : 0, battery : 0, flight_time : 0, speed : 0, image : ""}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        this.dataBase.addDrone(result);
+        this.dataSource = this.dataBase.getDroneData();
+        this.applyFilter();
+    });
+  }
 
   ngOnInit() {
     this.selection = new SelectionModel<DroneData>(true, []);

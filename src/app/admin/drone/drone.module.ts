@@ -10,6 +10,10 @@ import { DroneComponent } from './drone.component';
 import { DronesRoutingModule } from './drone-routing.module';
 import { FormsModule } from '@angular/forms';
 import { DataBaseService } from '../datastore/database.service';
+import { DroneAddDialog } from './drone-add/droneAdd.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -21,9 +25,14 @@ import { DataBaseService } from '../datastore/database.service';
     MatSortModule,
     MatInputModule,
     MatCheckboxModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSelectModule,
     FormsModule
   ],
-  declarations: [DroneComponent],
+  declarations: [DroneComponent, DroneAddDialog],
   providers : [DataBaseService]
 })
 export class DroneModule {}

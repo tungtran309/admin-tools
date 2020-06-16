@@ -1,9 +1,12 @@
 <section id="sample-table" class="mat-elevation-z8 bg-white">
-  <mat-form-field class="seach-form">
+  <mat-form-field class="search-form">
     <mat-label>Tên</mat-label>
     <input matInput (keyup)="applyFilter()" [(ngModel)]='droneSearch.model' placeholder="Nhập model">
   </mat-form-field>
 
+  <div>
+    <button mat-raised-button class="search-form" color="primary" (click)="openDialog()">Thêm drone</button>
+  </div>
   <table mat-table [dataSource]="dataTable" matSort class="w-100">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>

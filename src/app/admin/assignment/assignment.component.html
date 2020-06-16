@@ -1,7 +1,7 @@
 <section id="sample-table" class="mat-elevation-z8 bg-white">
   <mat-form-field class="search-form">
     <mat-label>Người thực hiện</mat-label>
-    <input matInput (keyup)="applyFilter()" [(ngModel)]='userId' placeholder="Nhập tên">
+    <input matInput (keyup)="applyFilter()" [(ngModel)]='searchUserId' placeholder="Nhập tên">
   </mat-form-field>
   <mat-form-field class="search-form">
     <mat-label>Ngày bắt đầu</mat-label>
@@ -14,6 +14,15 @@
     <input matInput (keyup)="applyFilter()" [matDatepicker]="endDatePicker" [(ngModel)]='endDate'>
     <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
     <mat-datepicker #endDatePicker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="search-form">
+    <mat-label>Trạng thái</mat-label>
+    <mat-select [(value)]="seachStatus" (selectionChange)="applyFilter()">
+      <mat-option value="-1">All</mat-option>
+      <mat-option value="0">Đã hoàn thành</mat-option>
+      <mat-option value="1">Đang kiểm tra</mat-option>
+      <mat-option value="2">Đang sửa chữa</mat-option>
+    </mat-select>
   </mat-form-field>
   <div>
   </div>
@@ -29,8 +38,8 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="userId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Người thực hiện </th>
-      <td mat-cell *matCellDef="let row"> {{this.dataBase.getUserName(row.userId)}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id người thực hiện </th>
+      <td mat-cell *matCellDef="let row" (click)="applyFilterByUserId(row.userId)"> <a href="javascript:void(0);"> {{this.dataBase.getUserName(row.userId)}} </a> </td>
     </ng-container>
 
     <ng-container matColumnDef="startDate">

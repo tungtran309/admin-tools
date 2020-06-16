@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Thêm drone</h1>
+<mat-form-field class="add-form">
+  <mat-label>Model</mat-label>
+  <input matInput [(ngModel)]="data.model">
+</mat-form-field>
+
+<mat-form-field class="add-form">
+  <mat-label>Chiều cao (mm)</mat-label>
+  <input matInput [(ngModel)]="data.height">
+</mat-form-field>
+
+
+<mat-form-field class="add-form">
+  <mat-label>Khối lượng (g)</mat-label>
+  <input matInput [(ngModel)]="data.weight">
+</mat-form-field>
+
+<mat-form-field class="add-form">
+  <mat-label>Dung lượng pin (mAh)</mat-label>
+  <input matInput [(ngModel)]="data.battery">
+</mat-form-field>
+
+<mat-form-field class="add-form">
+  <mat-label>Thời gian bay (phút)</mat-label>
+  <input matInput [(ngModel)]="data.flight_time">
+</mat-form-field>
+
+<mat-form-field class="add-form">
+  <mat-label>Tốc độ (m/s)</mat-label>
+  <input matInput [(ngModel)]="data.speed">
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
