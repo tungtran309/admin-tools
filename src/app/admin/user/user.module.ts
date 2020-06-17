@@ -8,12 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UserComponent } from './user.component';
 import { UsersRoutingModule } from './user-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserAddDialog } from './user-add/userAdd.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { DataBaseService } from '../datastore/database.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -29,7 +31,10 @@ import { DataBaseService } from '../datastore/database.service';
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   declarations: [UserComponent, UserAddDialog],
   providers : [DataBaseService]

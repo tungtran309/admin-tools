@@ -38,7 +38,7 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="userId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id người thực hiện </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Người thực hiện </th>
       <td mat-cell *matCellDef="let row" (click)="applyFilterByUserId(row.userId)"> <a href="javascript:void(0);"> {{this.dataBase.getUserName(row.userId)}} </a> </td>
     </ng-container>
 

@@ -8,12 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DroneComponent } from './drone.component';
 import { DronesRoutingModule } from './drone-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataBaseService } from '../datastore/database.service';
 import { DroneAddDialog } from './drone-add/droneAdd.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -30,7 +32,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   declarations: [DroneComponent, DroneAddDialog],
   providers : [DataBaseService]

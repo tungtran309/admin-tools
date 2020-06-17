@@ -27,7 +27,7 @@ export const childRoutes = [
     loadChildren: () =>
       import('./image/image.module').then(m => m.ImageModule),
     data: { icon: 'image', text: 'Quản lý ảnh chụp' }
-  }//,
+  }
   // {
   //   path: 'material',
   //   loadChildren: () =>

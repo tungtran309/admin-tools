@@ -6,6 +6,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { DataBaseService, DroneData } from '../datastore/database.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DroneAddDialog } from './drone-add/droneAdd.component';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -23,6 +24,8 @@ export class DroneComponent implements OnInit, AfterViewInit {
   dataTable : MatTableDataSource<DroneData>
   selection: SelectionModel<DroneData>;
   droneSearch : DroneData;
+  myControl = new FormControl();
+  matchedModels : Array<String>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -44,17 +47,28 @@ export class DroneComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getMatchedModels() {
+    this.matchedModels = [];
+    for (var row of this.dataSource) {
+      if (row.model.includes(this.droneSearch.model) || this.droneSearch.model == "") {
+        this.matchedModels.push(row.model);
+      }
+    }
+  }
+
   ngOnInit() {
     this.selection = new SelectionModel<DroneData>(true, []);
     this.dataSource = this.dataBase.getDroneData();
     this.dataTable = new MatTableDataSource(this.dataSource);
     this.droneSearch = {id : 0, model : '', height : 0, weight : 0, battery : 0, flight_time : 0, speed : 0, image : ''};
+    this.getMatchedModels();
   }
 
   ngAfterViewInit() {
     this.dataTable.paginator = this.paginator;
     this.dataTable.sort = this.sort;
   }
+
 
   applyFilter() {
     console.log(this.droneSearch);

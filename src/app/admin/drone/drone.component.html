@@ -1,8 +1,11 @@
 <section id="sample-table" class="mat-elevation-z8 bg-white">
   <mat-form-field class="search-form">
-    <mat-label>Tên</mat-label>
-    <input matInput (keyup)="applyFilter()" [(ngModel)]='droneSearch.model' placeholder="Nhập model">
+    <mat-label> <mat-icon>search</mat-icon> Tên</mat-label>
+    <input type="text" (keyup)="applyFilter()" (input)="getMatchedModels()" matInput [formControl]="myControl" [matAutocomplete]="autoCompleteModel" [(ngModel)]='droneSearch.model'>
   </mat-form-field>
+  <mat-autocomplete #autoCompleteModel="matAutocomplete">
+    <mat-option *ngFor="let model of matchedModels" [value]="model">{{model}}</mat-option>
+  </mat-autocomplete>
 
   <div>
     <button mat-raised-button class="search-form" color="primary" (click)="openDialog()">Thêm drone</button>
