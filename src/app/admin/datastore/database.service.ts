@@ -148,9 +148,26 @@ export class DataBaseService {
     this.userList.push(newUser);
   }
 
+  deleteUser(user : UserData) {
+    const index = this.userList.indexOf(user, 0);
+    if (index > -1) {
+        this.userList.splice(index, 1);
+    } else {
+      console.log('cant find user' + user);
+    }
+  }
+
   addDrone(newDrone : DroneData) {
     newDrone.id = this.droneList[this.droneList.length - 1].id + 1;
     this.droneList.push(newDrone);
   }
 
+  deleteDrone(drone : DroneData) {
+    const index = this.droneList.indexOf(drone, 0);
+    if (index > -1) {
+        this.droneList.splice(index, 1);
+    } else {
+      console.log('cant find user' + drone);
+    }
+  }
 }

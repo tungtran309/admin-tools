@@ -8,6 +8,7 @@ import { DataBaseService, UserData } from '../datastore/database.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { ConfirmationDialog } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { NotificationService } from 'src/app/shared/notification.service';
 
 
 export class UserComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'email', 'name', 'age', 'gender', 'department', 'occupation'];
+  displayedColumns = ['id', 'email', 'name', 'age', 'gender', 'department', 'occupation', 'delete'];
   dataSource: Array<UserData>;
   dataTable : MatTableDataSource<UserData>
   selection: SelectionModel<UserData>;
@@ -34,7 +35,24 @@ export class UserComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog,
               public dataBase: DataBaseService,
               private notifyService : NotificationService) {}
+  
+  deleteUser(user : any) {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      width: '350px',
+      height: '200px',
+      data : 'Bạn có chắc chắn muốn xóa ' + user.name + ' ?'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+        if (result == 'accept') {
+          this.dataBase.deleteUser(user);
+          this.notifyService.showWarning("Xóa user " + user.name + " thành công", "Warning");
+          this.dataSource = this.dataBase.getUserData();
+          this.applyFilter();
+        }
+    });
+  }
+  
   openDialog(): void {
     const dialogRef = this.dialog.open(UserAddDialog, {
       width: '540px',

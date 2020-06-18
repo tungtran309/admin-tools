@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DroneAddDialog } from './drone-add/droneAdd.component';
 import { FormControl } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { ConfirmationDialog } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -20,7 +21,7 @@ import { NotificationService } from 'src/app/shared/notification.service';
 
 
 export class DroneComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'model', 'height', 'weight', 'battery', 'flight_time', 'speed', 'image'];
+  displayedColumns = ['id', 'model', 'height', 'weight', 'battery', 'flight_time', 'speed', 'image', 'delete'];
   dataSource: Array<DroneData>;
   dataTable : MatTableDataSource<DroneData>
   selection: SelectionModel<DroneData>;
@@ -33,7 +34,22 @@ export class DroneComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog,
               public dataBase : DataBaseService,
               public notifyService : NotificationService) {}
+  deleteDrone(drone : any) {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      width: '350px',
+      height: '200px',
+      data : 'Bạn có chắc chắn muốn xóa ' + drone.model + ' ?'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+        if (result == 'accept') {
+          this.dataBase.deleteDrone(drone);
+          this.notifyService.showWarning("Xóa drone " + drone.model + " thành công", "Warning");
+          this.dataSource = this.dataBase.getDroneData();
+          this.applyFilter();
+        }
+    });
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(DroneAddDialog, {
       width: '540px',
