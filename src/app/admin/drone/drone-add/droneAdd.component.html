@@ -36,6 +36,14 @@
   <mat-error *ngIf="droneForm.get('speed').invalid">Bạn phải nhập tốc độ</mat-error>
 </mat-form-field>
 
+<div class="add-form">
+  <img [src]="data.image" style="height: 200px; width:300px">
+  <input type="file" id="file"
+         (change)="handleFileInput($event.target.files)"
+         [formControl]="droneForm.get('image')">
+  <mat-error *ngIf="droneForm.get('image').invalid">Bạn phải upload ảnh</mat-error>
+</div>
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button mat-button [mat-dialog-close]="data" [disabled]="droneForm.invalid" cdkFocusInitial>Ok</button>

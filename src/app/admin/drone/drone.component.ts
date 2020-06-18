@@ -7,6 +7,7 @@ import { DataBaseService, DroneData } from '../datastore/database.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DroneAddDialog } from './drone-add/droneAdd.component';
 import { FormControl } from '@angular/forms';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 
 
@@ -30,7 +31,8 @@ export class DroneComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(public dialog: MatDialog,
-              public dataBase : DataBaseService) {}
+              public dataBase : DataBaseService,
+              public notifyService : NotificationService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DroneAddDialog, {
@@ -42,6 +44,7 @@ export class DroneComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
         if (result != undefined) {
           this.dataBase.addDrone(result);
+          this.notifyService.showSuccess("Thêm drone thành công", "Success");
           this.dataSource = this.dataBase.getDroneData();
           this.applyFilter();
         }

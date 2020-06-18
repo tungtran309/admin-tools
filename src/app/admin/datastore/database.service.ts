@@ -109,15 +109,6 @@ export class DataBaseService {
 
   }
 
-  public checkDuplicatedEmail (newEmail : String) : boolean {
-    for (var user of this.userList) {
-      if (user.email == newEmail) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   getImageData() : Array<ImageData> {
     return this.imageList;
   }

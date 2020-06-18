@@ -28,6 +28,17 @@ export class DroneAddDialog {
     weight : new FormControl('', [Validators.required]),
     battery : new FormControl('', [Validators.required]),
     flight_time : new FormControl('', [Validators.required]),
-    speed : new FormControl('', [Validators.required])
+    speed : new FormControl('', [Validators.required]),
+    image : new FormControl('', [Validators.required])
   });
+
+  fileToUpload: File = null;
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.data.image = 'assets/images/' + this.fileToUpload.name;
+  }
+
+
+
 }
