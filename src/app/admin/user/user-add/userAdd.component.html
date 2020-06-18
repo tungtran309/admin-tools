@@ -1,33 +1,45 @@
 <h1 mat-dialog-title>Thêm người dùng</h1>
 <mat-form-field class="add-form">
   <mat-label>Tên người dùng</mat-label>
-  <input matInput [(ngModel)]="data.name">
+  <input matInput [(ngModel)]="data.name" [formControl]="userForm.get('name')">
+  <mat-error *ngIf="userForm.get('name').invalid">Bạn phải nhập tên</mat-error>
+</mat-form-field>
+
+<mat-form-field class="add-form">
+  <mat-label>Email</mat-label>
+  <input matInput [(ngModel)]="data.email" [formControl]="userForm.get('email')">
+  <mat-error *ngIf="userForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Tuổi</mat-label>
-  <input matInput [(ngModel)]="data.age">
+  <input type='number' matInput [(ngModel)]="data.age" [formControl]="userForm.get('age')">
+  <mat-error *ngIf="userForm.get('age').hasError('min')">Tuổi quá nhỏ</mat-error>
+  <mat-error *ngIf="userForm.get('age').hasError('max')">Tuổi quá lớn</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Giới tính</mat-label>
-  <mat-select [(value)]="data.gender">
+  <mat-select [(value)]="data.gender" [formControl]="userForm.get('gender')">
     <mat-option value="Nam">Nam</mat-option>
     <mat-option value="Nữ">Nữ</mat-option>
   </mat-select>
+  <mat-error *ngIf="userForm.get('gender').invalid">Bạn chưa chọn giới tính</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Chi nhánh</mat-label>
-  <input matInput [(ngModel)]="data.department">
+  <input matInput [(ngModel)]="data.department" [formControl]="userForm.get('department')">
+  <mat-error *ngIf="userForm.get('department').invalid">Bạn chưa nhập chi nhánh</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Chức vụ</mat-label>
-  <input matInput [(ngModel)]="data.occupation">
+  <input matInput [(ngModel)]="data.occupation" [formControl]="userForm.get('occupation')">
+  <mat-error *ngIf="userForm.get('occupation').invalid">Bạn chưa nhập chức vụ</mat-error>
 </mat-form-field>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="userForm.invalid" cdkFocusInitial>Ok</button>
 </div>

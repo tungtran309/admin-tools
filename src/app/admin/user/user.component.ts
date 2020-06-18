@@ -7,6 +7,7 @@ import { UserAddDialog } from './user-add/userAdd.component';
 import { DataBaseService, UserData } from '../datastore/database.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { FormControl } from '@angular/forms';
 
 
 export class UserComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'name', 'age', 'gender', 'department', 'occupation'];
+  displayedColumns = ['id', 'email', 'name', 'age', 'gender', 'department', 'occupation'];
   dataSource: Array<UserData>;
   dataTable : MatTableDataSource<UserData>
   selection: SelectionModel<UserData>;
@@ -31,19 +32,23 @@ export class UserComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(public dialog: MatDialog,
-              public dataBase : DataBaseService) {}
+              public dataBase: DataBaseService,
+              private notifyService : NotificationService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(UserAddDialog, {
       width: '540px',
       height: '360px',
-      data : {id : "", name : "", age : "", gender: "", department : "", occupation : ""}
+      data : {id : 0, email : "", name : "", age : "", gender: "", department : "", occupation : ""}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        this.dataBase.addUser(result);
-        this.dataSource = this.dataBase.getUserData();
-        this.applyFilter();
+        if (result != undefined) {
+          this.dataBase.addUser(result);
+          this.notifyService.showSuccess("Thêm user thành công", "Success");
+          this.dataSource = this.dataBase.getUserData();
+          this.applyFilter();
+        }
     });
   }
 
@@ -80,7 +85,7 @@ export class UserComponent implements OnInit, AfterViewInit {
     this.selection = new SelectionModel<UserData>(true, []);
     this.dataSource = this.dataBase.getUserData();
     this.dataTable = new MatTableDataSource(this.dataSource);
-    this.userSearch = {id : 0, name : "", age : 0, gender : "", department : "", occupation : ""};
+    this.userSearch = {id : 0, email: "", name : "", age : 0, gender : "", department : "", occupation : ""};
     this.getMatchedNames(); this.getMatchedDepartments(); this.getMatchedOccupations();
   }
 

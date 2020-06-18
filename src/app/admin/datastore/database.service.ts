@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 export interface UserData {
   id : number;
+  email : string;
   name : string;
   age : number;
   gender : string;
@@ -67,22 +68,22 @@ export class DataBaseService {
     ,{userId : 2, startDate : '01/06/2020', completeDate : '04/06/2020', location : "Đại học Xây Dựng", description : "Hàn mối nối", column : "Q3T2", status : 0}
     ,{userId : 5, startDate : '22/05/2020', completeDate : '', location : "Đại học Xây Dựng", description : "Hàn mối nối", column : "Q3T2", status : 1}]
   userList : Array<UserData> = 
-    [{id : 1, name : 'Nguyễn Văn A', age : 25, gender : "Nam", department : "Hai Bà Trưng", occupation : "Quản trị viên"}
-    ,{id : 2, name : 'Hoàng Thị B', age : 26, gender : "Nữ", department : "Ba Đình", occupation : "Quản trị viên"}
-    ,{id : 3, name : 'Nguyễn Văn C', age : 25, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
-    ,{id : 4, name : 'Trần Văn D', age : 34, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
-    ,{id : 5, name : 'Nguyễn Thị E', gender : "Nữ", age : 30, department : "Ba Đình", occupation : "Thợ điện"}
-    ,{id : 6, name : 'Lê Văn G', age : 37, gender : "Nam", department : "Ba Đình", occupation : "Phân tích viên"}
-    ,{id : 7, name : 'Lê Thị H', age : 40, gender : "Nữ", department : "Hai Bà Trưng", occupation : "Thợ điện"}
-    ,{id : 8, name : 'Bùi Văn P', age : 41, gender : "Nam", department : "Ba Đình", occupation : "Phân tích viên"}
-    ,{id : 9, name : 'Võ Văn Z', age : 45, gender : "Nam", department : "Hai Bà Trưng", occupation : "Phân tích viên"}
-    ,{id : 10, name : 'Trần Xuân T', age : 21,  gender : "Nam",department : "Ba Đình", occupation : "Thợ điện"}
-    ,{id : 11, name : 'Chu Đình N', age : 23, gender : "Nam", department : "Hai Bà Trưng", occupation : "Phân tích viên"}
-    ,{id : 12, name : 'Phạm Văn M', age : 31, gender : "Nam", department : "Ba Đình", occupation : "Thợ điện"}
-    ,{id : 13, name : 'Lê Văn X', age : 27, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
-    ,{id : 14, name : 'Nguyễn Thị Y', age : 26, gender : "Nữ", department : "Ba Đình", occupation : "Thợ điện"}
-    ,{id : 15, name : 'Nguyễn Văn Z', age : 22, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
-    ,{id : 16, name : 'Cao Thị E', gender : "Nữ", age : 28, department : "Hai Bà Trưng", occupation : "Quản trị viên"}]
+    [{id : 1, email : 'nguyenvana@gmail.com', name : 'Nguyễn Văn A', age : 25, gender : "Nam", department : "Hai Bà Trưng", occupation : "Quản trị viên"}
+    ,{id : 2, email : 'hoangthib@gmail.com', name : 'Hoàng Thị B', age : 26, gender : "Nữ", department : "Ba Đình", occupation : "Quản trị viên"}
+    ,{id : 3, email : 'nguyenvanc@gmail.com', name : 'Nguyễn Văn C', age : 25, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
+    ,{id : 4, email : 'tranvand@gmail.com', name : 'Trần Văn D', age : 34, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
+    ,{id : 5, email : 'nguyenthie@gmail.com', name : 'Nguyễn Thị E', gender : "Nữ", age : 30, department : "Ba Đình", occupation : "Thợ điện"}
+    ,{id : 6, email : 'levang@gmail.com', name : 'Lê Văn G', age : 37, gender : "Nam", department : "Ba Đình", occupation : "Phân tích viên"}
+    ,{id : 7, email : 'lethih@gmail.com', name : 'Lê Thị H', age : 40, gender : "Nữ", department : "Hai Bà Trưng", occupation : "Thợ điện"}
+    ,{id : 8, email : 'buivanp@gmail.com', name : 'Bùi Văn P', age : 41, gender : "Nam", department : "Ba Đình", occupation : "Phân tích viên"}
+    ,{id : 9, email : 'vovanz@gmail.com', name : 'Võ Văn Z', age : 45, gender : "Nam", department : "Hai Bà Trưng", occupation : "Phân tích viên"}
+    ,{id : 10, email : 'tranxuant@gmail.com', name : 'Trần Xuân T', age : 21,  gender : "Nam",department : "Ba Đình", occupation : "Thợ điện"}
+    ,{id : 11, email : 'chudinhn@gmail.com', name : 'Chu Đình N', age : 23, gender : "Nam", department : "Hai Bà Trưng", occupation : "Phân tích viên"}
+    ,{id : 12, email : 'phamvanm@gmail.com', name : 'Phạm Văn M', age : 31, gender : "Nam", department : "Ba Đình", occupation : "Thợ điện"}
+    ,{id : 13, email : 'levanx@gmail.com', name : 'Lê Văn X', age : 27, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
+    ,{id : 14, email : 'nguyenthiy@gmail.com', name : 'Nguyễn Thị Y', age : 26, gender : "Nữ", department : "Ba Đình", occupation : "Thợ điện"}
+    ,{id : 15, email : 'nguyenvanz@gmail.com', name : 'Nguyễn Văn Z', age : 22, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
+    ,{id : 16, email : 'caothie@gmail.com', name : 'Cao Thị E', gender : "Nữ", age : 28, department : "Hai Bà Trưng", occupation : "Quản trị viên"}]
   droneList : Array<DroneData> = 
     [{id : 1, model : 'Intel Aero 4', height : 150, weight : 1000, battery : 15000, flight_time : 2000, speed : 10, image : 'assets/images/drone1.jpg'},
     {id : 2, model : 'DJI Phantom 4', height : 200, weight : 900, battery : 10000, flight_time : 50, speed : 11, image : 'assets/images/drone2.jpeg'},
@@ -106,6 +107,15 @@ export class DataBaseService {
     {imgSrc: 'assets/images/image11.jpeg',  date: '01/06/2020', columnId : "P1D3", droneId : 2, location: 'Đường Vành đai 3'}];
   constructor() {
 
+  }
+
+  public checkDuplicatedEmail (newEmail : String) : boolean {
+    for (var user of this.userList) {
+      if (user.email == newEmail) {
+        return true;
+      }
+    }
+    return false;
   }
 
   getImageData() : Array<ImageData> {

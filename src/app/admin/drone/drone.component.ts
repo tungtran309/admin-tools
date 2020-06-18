@@ -36,14 +36,15 @@ export class DroneComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(DroneAddDialog, {
       width: '540px',
       height: '360px',
-      data : {id : "", model : "", height : 0, weight : 0, battery : 0, flight_time : 0, speed : 0, image : ""}
+      data : {id : "", model : "", height : "", weight : "", battery : "", flight_time : 0, speed : "", image : ""}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
-        this.dataBase.addDrone(result);
-        this.dataSource = this.dataBase.getDroneData();
-        this.applyFilter();
+        if (result != undefined) {
+          this.dataBase.addDrone(result);
+          this.dataSource = this.dataBase.getDroneData();
+          this.applyFilter();
+        }
     });
   }
 

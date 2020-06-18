@@ -1,36 +1,42 @@
 <h1 mat-dialog-title>Thêm drone</h1>
 <mat-form-field class="add-form">
   <mat-label>Model</mat-label>
-  <input matInput [(ngModel)]="data.model">
+  <input matInput [(ngModel)]="data.model" [formControl]="droneForm.get('model')">
+  <mat-error *ngIf="droneForm.get('model').invalid">Bạn phải nhập model</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Chiều cao (mm)</mat-label>
-  <input matInput [(ngModel)]="data.height">
+  <input matInput [(ngModel)]="data.height" type='number' [formControl]="droneForm.get('height')">
+  <mat-error *ngIf="droneForm.get('height').invalid">Bạn phải nhập chiều cao</mat-error>
 </mat-form-field>
 
 
 <mat-form-field class="add-form">
   <mat-label>Khối lượng (g)</mat-label>
-  <input matInput [(ngModel)]="data.weight">
+  <input matInput [(ngModel)]="data.weight" type='number' [formControl]="droneForm.get('weight')">
+  <mat-error *ngIf="droneForm.get('weight').invalid">Bạn phải nhập cân nặng</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Dung lượng pin (mAh)</mat-label>
-  <input matInput [(ngModel)]="data.battery">
+  <input matInput [(ngModel)]="data.battery" type='number' [formControl]="droneForm.get('battery')">
+  <mat-error *ngIf="droneForm.get('battery').invalid">Bạn phải nhập dung lượng pin</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Thời gian bay (phút)</mat-label>
-  <input matInput [(ngModel)]="data.flight_time">
+  <input matInput [(ngModel)]="data.flight_time" type='number' [formControl]="droneForm.get('flight_time')">
+  <mat-error *ngIf="droneForm.get('flight_time').invalid">Bạn phải nhập thời gian bay</mat-error>
 </mat-form-field>
 
 <mat-form-field class="add-form">
   <mat-label>Tốc độ (m/s)</mat-label>
-  <input matInput [(ngModel)]="data.speed">
+  <input matInput [(ngModel)]="data.speed" type='number' [formControl]="droneForm.get('speed')">
+  <mat-error *ngIf="droneForm.get('speed').invalid">Bạn phải nhập tốc độ</mat-error>
 </mat-form-field>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="droneForm.invalid" cdkFocusInitial>Ok</button>
 </div>
