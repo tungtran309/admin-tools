@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DataBaseService } from '../datastore/database.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    SharedModule
   ],
   declarations: [UserComponent, UserAddDialog],
   providers : [DataBaseService]

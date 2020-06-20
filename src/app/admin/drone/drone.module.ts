@@ -37,7 +37,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    SharedModule
   ],
   declarations: [DroneComponent, DroneAddDialog],
   providers : [DataBaseService]
