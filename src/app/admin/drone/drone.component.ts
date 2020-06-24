@@ -21,7 +21,7 @@ import { ConfirmationDialog } from 'src/app/shared/confirmation-dialog/confirmat
 
 
 export class DroneComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'model', 'height', 'weight', 'battery', 'flight_time', 'speed', 'image', 'delete'];
+  displayedColumns = ['id', 'model', 'flight_time', 'speed', 'image', 'status', 'delete'];
   dataSource: Array<DroneData>;
   dataTable : MatTableDataSource<DroneData>
   selection: SelectionModel<DroneData>;

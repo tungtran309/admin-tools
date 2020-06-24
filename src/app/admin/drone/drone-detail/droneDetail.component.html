@@ -1,0 +1,113 @@
+<h1 mat-dialog-title>Thông tin chi tiết</h1>
+
+<mat-label>Trạng thái : </mat-label>
+<button mat-raised-button color="{{dataBase.COLOR_STATUS[data.id % 3]}}" style="width: 15%;">{{dataBase.DRONE_STATUS[data.id % 3]}}</button>
+<br>
+<br>
+<div class="add-form" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutAlign="space-between stretch">
+  <div fxFlex.gt-sm="49" class="mb15">
+    <div class="add-form">
+      <img [src]="data.image" style="height: 200px; width:300px">
+      <br>
+      <input type="file" id="file"
+             (change)="handleFileInput($event.target.files)">
+    </div>
+  </div>
+  <div fxFlex.gt-sm="49" class="mb15">
+    <mat-form-field class="add-form">
+      <mat-label>Model</mat-label>
+      <input matInput [(ngModel)]="data.model" [formControl]="droneForm.get('model')">
+      <mat-error *ngIf="droneForm.get('model').invalid">Bạn phải nhập model</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="add-form">
+      <mat-label>Chiều cao (mm)</mat-label>
+      <input matInput [(ngModel)]="data.height" type='number' [formControl]="droneForm.get('height')">
+      <mat-error *ngIf="droneForm.get('height').invalid">Bạn phải nhập chiều cao</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="add-form">
+      <mat-label>Khối lượng (g)</mat-label>
+      <input matInput [(ngModel)]="data.weight" type='number' [formControl]="droneForm.get('weight')">
+      <mat-error *ngIf="droneForm.get('weight').invalid">Bạn phải nhập cân nặng</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="add-form">
+      <mat-label>Dung lượng pin (mAh)</mat-label>
+      <input matInput [(ngModel)]="data.battery" type='number' [formControl]="droneForm.get('battery')">
+      <mat-error *ngIf="droneForm.get('battery').invalid">Bạn phải nhập dung lượng pin</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="add-form">
+      <mat-label>Thời gian bay (phút)</mat-label>
+      <input matInput [(ngModel)]="data.flight_time" type='number' [formControl]="droneForm.get('flight_time')">
+      <mat-error *ngIf="droneForm.get('flight_time').invalid">Bạn phải nhập thời gian bay</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="add-form">
+      <mat-label>Tốc độ (m/s)</mat-label>
+      <input matInput [(ngModel)]="data.speed" type='number' [formControl]="droneForm.get('speed')">
+      <mat-error *ngIf="droneForm.get('speed').invalid">Bạn phải nhập tốc độ</mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="add-form" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutAlign="space-between stretch">
+  <div fxFlex.gt-sm="49" class="mb15">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Số phút bay</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="barChartType" [colors]="colorsTime"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.gt-sm="49" class="mb15">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Khoảng cách bay</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart [datasets]="barChartDistance" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="barChartType" [colors]="colorsDistance"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.gt-sm="49" class="mb15">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Số ảnh chụp</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart width="500" height="200" [datasets]="lineChartImage" [labels]="lineChartLabels" [options]="lineChartOptions"
+          [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.gt-sm="49" class="mb15">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Số sự cố</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart width="500" height="200" [datasets]="lineChartIncident" [labels]="lineChartLabels" [options]="lineChartOptions"
+          [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+<br>
+
+<div mat-dialog-actions>
+  <button mat-raised-button class="add-form" color="primary" [disabled]="droneForm.invalid" (click)="saveData()">Lưu</button>
+</div>

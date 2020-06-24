@@ -17,6 +17,9 @@ import { DataBaseService } from '../datastore/database.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UserProfileComponent } from './user-profile/userProfile.component';
+import { ChartsModule } from 'ng2-charts';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -37,9 +40,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    ChartsModule,
+    MatCardModule
   ],
-  declarations: [UserComponent, UserAddDialog],
+  declarations: [UserComponent, UserAddDialog, UserProfileComponent],
   providers : [DataBaseService]
 })
 export class UserModule {}

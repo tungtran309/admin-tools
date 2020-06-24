@@ -103,7 +103,7 @@ export class UserComponent implements OnInit, AfterViewInit {
     this.selection = new SelectionModel<UserData>(true, []);
     this.dataSource = this.dataBase.getUserData();
     this.dataTable = new MatTableDataSource(this.dataSource);
-    this.userSearch = {id : 0, email: "", name : "", age : 0, gender : "", department : "", occupation : ""};
+    this.userSearch = {id : 0, image : "", email: "", name : "", age : 0, gender : "", department : "", occupation : ""};
     this.getMatchedNames(); this.getMatchedDepartments(); this.getMatchedOccupations();
   }
 

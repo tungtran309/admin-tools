@@ -18,6 +18,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationDialog } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DroneDetailComponent } from './drone-detail/droneDetail.component';
+import { ChartsModule } from 'ng2-charts';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -38,9 +41,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    ChartsModule,
+    MatCardModule
   ],
-  declarations: [DroneComponent, DroneAddDialog],
+  declarations: [DroneComponent, DroneAddDialog, DroneDetailComponent],
   providers : [DataBaseService]
 })
 export class DroneModule {}
