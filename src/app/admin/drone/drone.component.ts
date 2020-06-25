@@ -9,6 +9,8 @@ import { DroneAddDialog } from './drone-add/droneAdd.component';
 import { FormControl } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { ConfirmationDialog } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 
 
@@ -33,7 +35,8 @@ export class DroneComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(public dialog: MatDialog,
               public dataBase : DataBaseService,
-              public notifyService : NotificationService) {}
+              public notifyService : NotificationService,
+              private router : Router) {}
   deleteDrone(drone : any) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       width: '350px',
@@ -117,5 +120,9 @@ export class DroneComponent implements OnInit, AfterViewInit {
     this.isAllSelected()
       ? this.selection.clear()
       : this.dataSource.forEach(row => this.selection.select(row));
+  }
+
+  navigateDroneDetail(id : number) {
+    this.router.navigate(['/drone/detail/' + id]);
   }
 }

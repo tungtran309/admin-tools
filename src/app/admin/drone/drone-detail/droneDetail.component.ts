@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { DroneData, DataBaseService } from '../../datastore/database.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 
 
@@ -28,6 +29,19 @@ export class DroneDetailComponent {
     borderColor:"#0F0",
     hoverBorderColor:"#00F"
   }];
+
+  colorsHistory : any = [{
+    backgroundColor:"#F00",
+    hoverBackgroundColor:"#FF0",
+    borderColor:"#0F0",
+    hoverBorderColor:"#00F"
+  }, {
+    backgroundColor:"#0FF",
+    hoverBackgroundColor:"#FF0",
+    borderColor:"#0F0",
+    hoverBorderColor:"#00F"
+  }];
+
   barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -37,6 +51,11 @@ export class DroneDetailComponent {
   barChartLegend = true;
   barChartData: any[] = [
     { data: [90, 590, 800, 810, 560, 553, 400, 394], label: 'Giờ bay (phút)' }
+  ];
+
+  barChartHistory: any[] = [
+    { data: [1, 1, 0, 2, 1, 1, 3, 1], label: 'Hỏng (lần)' },
+    { data: [4, 1, 2, 4, 2, 3, 4, 2], label: 'Bảo hành (lần)' },
   ];
 
   barChartDistance : any[] = [
@@ -107,7 +126,8 @@ export class DroneDetailComponent {
   public data : DroneData;
   constructor(private route: ActivatedRoute,
               public dataBase : DataBaseService,
-              private router: Router) {}
+              private router: Router,
+              private notificationService : NotificationService) {}
   
   droneForm = new FormGroup({
     model : new FormControl('', [Validators.required]),
@@ -135,6 +155,12 @@ export class DroneDetailComponent {
     this.id = this.route.snapshot.paramMap.get('id');
     this.data = this.dataBase.getDroneDataById(+this.id);
     console.log(this.dataBase.COLOR_STATUS[1]);
+    if (this.data.id % 6 == 1) {
+      this.notificationService.showInfo("", "Drone sắp hết pin", 7000);
+    }
+    if (this.data.id % 6 == 2) {
+      this.notificationService.showInfo("", "Drone đã quá 30 ngày chưa được bảo trì", 7000);
+    }
     // this.data = {id : 0, model : "", height : 0, weight : 0, battery : 0, flight_time : 0, speed : 0, image : ""}
   }
 

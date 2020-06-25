@@ -1,0 +1,95 @@
+<h1 mat-dialog-title>Đối chiếu dữ liệu</h1>
+
+<button mat-raised-button class="button-center" color="primary" (click)="applyFilter()">So sánh</button>
+<br>
+<br>
+
+<div class="add-form" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutAlign="space-between stretch">
+  <div fxFlex.gt-sm="45" class="mb15">
+    <mat-form-field>
+      <mat-label>Chuyến bay</mat-label>
+      <input type="text" (input)="getMatchedFlightNames()" matInput [matAutocomplete]="autoCompleteName" [(ngModel)]='searchFlightName' placeholder="Nhập chuyến bay">
+    </mat-form-field>
+    <mat-autocomplete #autoCompleteName="matAutocomplete">
+      <mat-option *ngFor="let name of matchedFlightNames" [value]="name">{{name}}</mat-option>
+    </mat-autocomplete>
+    
+    <mat-form-field class="search-form">
+      <mat-label>Địa điểm</mat-label>
+      <input type="text" (input)="getMatchedLocations()" matInput [matAutocomplete]="autoCompleteLocation" [(ngModel)]='searchLocation' placeholder="Nhập địa điểm">
+    </mat-form-field>
+    <mat-autocomplete #autoCompleteLocation="matAutocomplete">
+      <mat-option *ngFor="let name of matchedLocations" [value]="name">{{name}}</mat-option>
+    </mat-autocomplete>
+
+    <div class="page-wrapper" fxLayout="row wrap">
+      <mat-card fxFlex.lg="100%" fxFlex.xs="100%" *ngFor="let item of images">
+        <img mat-card-image style="width: 100%; height: 300px;" [src]="item.imgSrc" class="imgs">
+        <mat-card-content>
+          Cột : {{item.columnId}}
+        </mat-card-content>
+        <mat-card-content>
+          Ngày : {{this.dataBase.getDateByFlightId(item.flightId)}}
+        </mat-card-content>
+        <mat-card-content>
+          Drone : {{this.dataBase.getDroneNameByFlightId(item.flightId)}}
+        </mat-card-content>
+        <mat-card-content>
+          Chuyến bay : {{this.dataBase.getFlightNameByFlightId(item.flightId)}}
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>
+            <mat-icon class="location-icon">location_on</mat-icon> {{item.location}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div fxFlex.gt-sm="45" class="mb15">
+    <mat-form-field>
+      <mat-label>Chuyến bay</mat-label>
+      <input type="text" (input)="getMatchedFlightNames2()" matInput [matAutocomplete]="autoCompleteName2" [(ngModel)]='searchFlightName2' placeholder="Nhập chuyến bay">
+    </mat-form-field>
+    <mat-autocomplete #autoCompleteName2="matAutocomplete">
+      <mat-option *ngFor="let name of matchedFlightNames2" [value]="name">{{name}}</mat-option>
+    </mat-autocomplete>
+    
+    <mat-form-field class="search-form">
+      <mat-label>Địa điểm</mat-label>
+      <input type="text" (input)="getMatchedLocations2()" matInput [matAutocomplete]="autoCompleteLocation2" [(ngModel)]='searchLocation2' placeholder="Nhập địa điểm">
+    </mat-form-field>
+    <mat-autocomplete #autoCompleteLocation2="matAutocomplete">
+      <mat-option *ngFor="let name of matchedLocations2" [value]="name">{{name}}</mat-option>
+    </mat-autocomplete>
+    
+    <div class="page-wrapper" fxLayout="row wrap">
+      <mat-card fxFlex.lg="100%" fxFlex.xs="100%" *ngFor="let item of images2">
+        <img mat-card-image style="width: 100%; height: 300px;" [src]="item.imgSrc" class="imgs">
+        <mat-card-content>
+          Cột : {{item.columnId}}
+        </mat-card-content>
+        <mat-card-content>
+          Ngày : {{this.dataBase.getDateByFlightId(item.flightId)}}
+        </mat-card-content>
+        <mat-card-content>
+          Drone : {{this.dataBase.getDroneNameByFlightId(item.flightId)}}
+        </mat-card-content>
+        <mat-card-content>
+          Chuyến bay : {{this.dataBase.getFlightNameByFlightId(item.flightId)}}
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>
+            <mat-icon class="location-icon">location_on</mat-icon> {{item.location}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div mat-dialog-actions>
+  <button mat-raised-button class="add-form" color="primary" (click)="saveData()">Quay lại</button>
+</div>

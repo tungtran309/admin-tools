@@ -17,8 +17,10 @@ export class NotificationService {
       this.toastr.error(message, title)
   }
   
-  showInfo(message, title){
-      this.toastr.info(message, title)
+  showInfo(message, title, timeout : number){
+      this.toastr.info(message, title, {
+        timeOut : timeout
+      });
   }
   
   showWarning(message, title){

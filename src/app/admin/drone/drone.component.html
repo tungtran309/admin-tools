@@ -18,7 +18,7 @@
 
     <ng-container matColumnDef="model">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
-      <td mat-cell *matCellDef="let row"> <a href="drone/detail/{{row.id}}"> {{row.model}} </a> </td>
+      <td mat-cell *matCellDef="let row"> <a href="javascript:void(0)" (click)="navigateDroneDetail(row.id)"> {{row.model}} </a> </td>
     </ng-container>
 
     <ng-container matColumnDef="image">

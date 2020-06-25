@@ -1,5 +1,7 @@
 <h1 mat-dialog-title>Thông tin chi tiết</h1>
 
+<br>
+
 <mat-label>Trạng thái : </mat-label>
 <button mat-raised-button color="{{dataBase.COLOR_STATUS[data.id % 3]}}" style="width: 15%;">{{dataBase.DRONE_STATUS[data.id % 3]}}</button>
 <br>
@@ -100,6 +102,18 @@
         <canvas baseChart width="500" height="200" [datasets]="lineChartIncident" [labels]="lineChartLabels" [options]="lineChartOptions"
           [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.gt-sm="49" class="mb15">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Lịch sử bảo hành</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart [datasets]="barChartHistory" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="barChartType"></canvas>
       </mat-card-content>
     </mat-card>
   </div>

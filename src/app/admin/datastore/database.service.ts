@@ -12,11 +12,18 @@ export interface UserData {
   image : string;
 }
 
+
+export interface FlightData {
+  id : number;
+  date : string;
+  droneId : number;
+  flightName : string;
+}
+
 export interface ImageData {
   imgSrc: string;
-  date: string;
   columnId : string;
-  droneId : number;
+  flightId : number;
   location: string;
 }
 
@@ -95,18 +102,32 @@ export class DataBaseService {
     {id : 6, model : 'DJI Mavic Pro 2', height : 165, weight : 800, battery : 10000, flight_time : 0, speed : 14, image : 'assets/images/drone6.jpeg'},
     {id : 7, model : 'CGAxis 3D', height : 178, weight : 1500, battery : 12000, flight_time : 500, speed : 10, image : 'assets/images/drone7.jpeg'},
     {id : 8, model : 'Quadcopter V1', height : 190 , weight : 1300, battery : 9500, flight_time : 400, speed : 11, image : 'assets/images/drone8.jpeg'}];
+  flightList : Array<FlightData> = 
+    [{id : 1, droneId : 1, date : '25/06/2020', flightName : 'Chuyến bay 1'},
+    {id : 2, droneId : 2, date : '19/06/2020', flightName : 'Chuyến bay 2'},
+    {id : 3, droneId : 3, date : '22/06/2020', flightName : 'Chuyến bay 3'},
+    {id : 4, droneId : 4, date : '23/06/2020', flightName : 'Chuyến bay 4'},
+    {id : 5, droneId : 5, date : '21/06/2020', flightName : 'Chuyến bay 5'}];
   imageList : Array<ImageData> = 
-    [{imgSrc: 'assets/images/image1.jpeg',  date: '12/05/2020', columnId : "N3E8", droneId : 1, location: 'Đại học Bách Khoa'},
-    {imgSrc: 'assets/images/image2.jpeg',  date: '13/05/2020', columnId : "P1Q2", droneId : 3, location: 'Cầu Vĩnh Tuy'},
-    {imgSrc: 'assets/images/image3.jpeg',  date: '19/05/2020', columnId : "N6F7", droneId : 1, location: 'Cầu Vĩnh Tuy'},
-    {imgSrc: 'assets/images/image4.jpeg',  date: '23/05/2020', columnId : "Q3T2", droneId : 2, location: 'Đại học Bách Khoa'},
-    {imgSrc: 'assets/images/image5.jpeg',  date: '12/05/2020', columnId : "L1M1", droneId : 1, location: 'Đường Vành đai 3'},
-    {imgSrc: 'assets/images/image6.jpeg',  date: '14/05/2020', columnId : "E1D2", droneId : 2, location: 'Đại học Xây Dựng'},
-    {imgSrc: 'assets/images/image7.jpeg',  date: '17/05/2020', columnId : "E3D5", droneId : 3, location: 'Đại học Bách Khoa'},
-    {imgSrc: 'assets/images/image8.jpeg',  date: '16/05/2020', columnId : "L2P1", droneId : 1, location: 'Đại học Xây Dựng'},
-    {imgSrc: 'assets/images/image9.jpeg',  date: '07/05/2020', columnId : "L3T5", droneId : 3, location: 'Đường Vành đai 3'},
-    {imgSrc: 'assets/images/image10.jpeg',  date: '22/05/2020', columnId : "T2F4", droneId : 1, location: 'Đại học Xây Dựng'},
-    {imgSrc: 'assets/images/image11.jpeg',  date: '01/06/2020', columnId : "P1D3", droneId : 2, location: 'Đường Vành đai 3'}];
+    [{imgSrc: 'assets/images/image1.jpeg', columnId : "N3E8", flightId : 1, location: 'Đại học Bách Khoa'},
+    {imgSrc: 'assets/images/image2.jpeg', columnId : "P1Q2", flightId : 1, location: 'Cầu Vĩnh Tuy'},
+    {imgSrc: 'assets/images/image3.jpeg', columnId : "N6F7", flightId : 1, location: 'Cầu Vĩnh Tuy'},
+    {imgSrc: 'assets/images/image4.jpeg', columnId : "Q3T2", flightId : 1, location: 'Đại học Bách Khoa'},
+    {imgSrc: 'assets/images/image5.jpeg', columnId : "L1M1", flightId : 2, location: 'Đường Vành đai 3'},
+    {imgSrc: 'assets/images/image6.jpeg', columnId : "E1D2", flightId : 2, location: 'Đại học Xây Dựng'},
+    {imgSrc: 'assets/images/image7.jpeg',  columnId : "E3D5", flightId : 2, location: 'Đại học Bách Khoa'},
+    {imgSrc: 'assets/images/image8.jpeg',  columnId : "L2P1", flightId : 2, location: 'Đại học Xây Dựng'},
+    {imgSrc: 'assets/images/image9.jpeg',  columnId : "L3T5", flightId : 3, location: 'Đường Vành đai 3'},
+    {imgSrc: 'assets/images/image10.jpeg',  columnId : "T2F4", flightId : 3, location: 'Đại học Xây Dựng'},
+    {imgSrc: 'assets/images/image11.jpeg',  columnId : "P1D3", flightId : 3, location: 'Đường Vành đai 3'},
+    {imgSrc: 'assets/images/image1.jpeg', columnId : "N3E8", flightId : 4, location: 'Đại học Bách Khoa'},
+    {imgSrc: 'assets/images/image2.jpeg', columnId : "P1Q2", flightId : 4, location: 'Cầu Vĩnh Tuy'},
+    {imgSrc: 'assets/images/image3.jpeg', columnId : "N6F7", flightId : 4, location: 'Cầu Vĩnh Tuy'},
+    {imgSrc: 'assets/images/image4.jpeg', columnId : "Q3T2", flightId : 4, location: 'Đại học Bách Khoa'},
+    {imgSrc: 'assets/images/image5.jpeg', columnId : "L1M1", flightId : 5, location: 'Đường Vành đai 3'},
+    {imgSrc: 'assets/images/image6.jpeg', columnId : "E1D2", flightId : 5, location: 'Đại học Xây Dựng'},
+    {imgSrc: 'assets/images/image7.jpeg',  columnId : "E3D5", flightId : 5, location: 'Đại học Bách Khoa'},
+    {imgSrc: 'assets/images/image8.jpeg',  columnId : "L2P1", flightId : 5, location: 'Đại học Xây Dựng'}];
   constructor() {
 
   }
@@ -206,6 +227,36 @@ export class DataBaseService {
         this.droneList.splice(index, 1);
     } else {
       console.log('cant find user' + drone);
+    }
+  }
+
+  getDateByFlightId(id : number) {
+    for (var flight of this.flightList) {
+      if (flight.id == id) {
+        return flight.date;
+      }
+    }
+  }
+
+  getDroneNameByFlightId(id : number) {
+    for (var flight of this.flightList) {
+      if (flight.id == id) {
+        for (var drone of this.droneList) {
+          if (drone.id == flight.droneId) {
+            return drone.model;
+          }
+        }
+        return null;
+      }
+    }
+    return null;
+  }
+
+  getFlightNameByFlightId(id : number) {
+    for (var flight of this.flightList) {
+      if (flight.id == id) {
+        return flight.flightName;
+      }
     }
   }
 }

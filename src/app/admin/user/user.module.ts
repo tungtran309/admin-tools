@@ -34,7 +34,6 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatFormFieldModule,
     MatSelectModule,
     FormsModule,
     MatAutocompleteModule,

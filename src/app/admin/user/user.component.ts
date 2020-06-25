@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { ConfirmationDialog } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class UserComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(public dialog: MatDialog,
               public dataBase: DataBaseService,
-              private notifyService : NotificationService) {}
+              private notifyService : NotificationService,
+              private router : Router) {}
   
   deleteUser(user : any) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
@@ -145,5 +147,9 @@ export class UserComponent implements OnInit, AfterViewInit {
     this.isAllSelected()
       ? this.selection.clear()
       : this.dataSource.forEach(row => this.selection.select(row));
+  }
+
+  navigateUserProfile(id : number) {
+    this.router.navigate(['/user/profile/' + id]);
   }
 }

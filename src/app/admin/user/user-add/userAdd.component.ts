@@ -39,6 +39,7 @@ export class UserAddDialog {
   }
   userForm = new FormGroup({
     email : new FormControl('', [Validators.required, Validators.email, this.duplicatedEmail.bind(this)]),
+    image : new FormControl('', [Validators.required]),
     name : new FormControl('', [Validators.required]),
     age : new FormControl('', [Validators.min(15), Validators.max(100)]),
     gender : new FormControl('', [Validators.required]),
@@ -61,4 +62,11 @@ export class UserAddDialog {
     return this.userForm.get('email').hasError('email') ? 'Email không đúng' : '';
   }
   
+
+  fileToUpload: File = null;
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.data.image = 'assets/images/' + this.fileToUpload.name;
+  }
 }

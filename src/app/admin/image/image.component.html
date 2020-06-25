@@ -1,15 +1,46 @@
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
-  
-</div>
+<section id="sample-table" class="page-wrapper">
+<mat-form-field>
+  <mat-label>Chuyến bay</mat-label>
+  <input type="text" (input)="getMatchedFlightNames()" matInput [matAutocomplete]="autoCompleteName" [(ngModel)]='searchFlightName' placeholder="Nhập chuyến bay">
+</mat-form-field>
+<mat-autocomplete #autoCompleteName="matAutocomplete">
+  <mat-option *ngFor="let name of matchedFlightNames" [value]="name">{{name}}</mat-option>
+</mat-autocomplete>
 
-<!-- <mat-grid-list cols="3" rowHeight="1:1">
-    <div *ngFor="let item of places">
-      <mat-grid-tile>
-        <img mat-grid-image [src]="item.imgSrc" class="imgs">
-        <h3>first tile</h3>
-      </mat-grid-tile>
-    </div>
-</mat-grid-list> -->
+<mat-form-field class="search-form">
+  <mat-label>Địa điểm</mat-label>
+  <input type="text" (input)="getMatchedLocations()" matInput [matAutocomplete]="autoCompleteLocation" [(ngModel)]='searchLocation' placeholder="Nhập địa điểm">
+</mat-form-field>
+<mat-autocomplete #autoCompleteLocation="matAutocomplete">
+  <mat-option *ngFor="let name of matchedLocations" [value]="name">{{name}}</mat-option>
+</mat-autocomplete>
+
+<mat-form-field class="search-form">
+  <mat-label>Ngày bắt đầu</mat-label>
+  <input matInput [matDatepicker]="startDatePicker" [(ngModel)]='startDate'>
+  <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+  <mat-datepicker #startDatePicker></mat-datepicker>
+</mat-form-field>
+<mat-form-field class="search-form">
+  <mat-label>Ngày kết thúc</mat-label>
+  <input matInput [matDatepicker]="endDatePicker" [(ngModel)]='endDate'>
+  <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+  <mat-datepicker #endDatePicker></mat-datepicker>
+</mat-form-field>
+
+<br>
+<button mat-raised-button color="primary" (click)="applyFilter()">
+  <mat-icon>search</mat-icon>
+  Tìm kiếm
+</button>
+
+<button mat-raised-button class="search-form" color="primary" (click)="navigateToCompare()">
+  <mat-icon>compare</mat-icon>
+  So sánh
+</button>
+</section>
+
+<br>
 
 <div class="page-wrapper" fxLayout="row wrap">
   <mat-card fxFlex.lg="33%" fxFlex.lt-lg="66%" fxFlex.xs="100%" *ngFor="let item of images">
@@ -18,10 +49,13 @@
       Cột : {{item.columnId}}
     </mat-card-content>
     <mat-card-content>
-      Ngày : {{item.date}}
+      Ngày : {{this.dataBase.getDateByFlightId(item.flightId)}}
     </mat-card-content>
     <mat-card-content>
-      Drone : {{this.dataBase.getDroneName(item.droneId)}}
+      Drone : {{this.dataBase.getDroneNameByFlightId(item.flightId)}}
+    </mat-card-content>
+    <mat-card-content>
+      Chuyến bay : {{this.dataBase.getFlightNameByFlightId(item.flightId)}}
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>
