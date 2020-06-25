@@ -7,11 +7,12 @@
       <div fxLayout="row">
         <div fxFlexFill>
           <mat-form-field class="w-100">
-            <input matInput placeholder="Email">
+            <input matInput placeholder="Email" name="email" [(ngModel)]="email">
           </mat-form-field>
           <mat-form-field class="w-100">
-            <input matInput type="password" placeholder="Password">
+            <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="password">
           </mat-form-field>
+          <mat-error *ngIf="!isLoggedIn">Sai email hoặc mật khẩu</mat-error>
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column" class="mt20 mb20">
@@ -21,7 +22,6 @@
       <div fxLayout="row">
         <div fxFlexFill>
           <button type="submit" mat-raised-button color="primary" class="w-100">Login</button>
-          <button type="button" mat-button color="primary" class="w-100" (click)="onLogin()">Sign Up</button>
         </div>
       </div>
 

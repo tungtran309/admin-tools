@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { childRoutes } from '../../child-routes';
+import { childRoutes, notAdminRoutes } from '../../child-routes';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,8 +8,14 @@ import { childRoutes } from '../../child-routes';
 })
 export class SideNavComponent implements OnInit {
   showMenu = false;
-  routes = childRoutes;
+  routes : any;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (localStorage.getItem('isAdmin') == 'true') {
+      this.routes = childRoutes;
+    } else {
+      this.routes = notAdminRoutes;
+    }
+  }
 }

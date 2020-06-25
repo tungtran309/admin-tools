@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "angular-material-admin"
+    "default": "angular-material-admin",
+    "staging": "angular-project-51bf8",
+    " ": "angular-project-51bf8"
   }
 }

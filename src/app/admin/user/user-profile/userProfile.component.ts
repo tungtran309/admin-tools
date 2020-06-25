@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { UserData, DataBaseService } from '../../datastore/database.service';
 import { FormGroup, Validators, FormControl, FormBuilder, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 
 
@@ -73,7 +74,8 @@ export class UserProfileComponent implements OnInit {
   public userForm : FormGroup;
   constructor(public dataBase : DataBaseService,
               private route: ActivatedRoute,
-              private router : Router) {}
+              private router : Router,
+              private notificationService : NotificationService) {}
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.data = this.dataBase.getUserDataById(+this.id);
@@ -93,7 +95,10 @@ export class UserProfileComponent implements OnInit {
   saveUser(): void {
     console.log(this.data);
     this.dataBase.updateUserById(this.data);
-    this.router.navigate(['/user']);
+    this.notificationService.showSuccess("Lưu thành công", "");
+    if (localStorage.getItem('isAdmin') == 'true') {
+      this.router.navigate(['/user']);
+    }
   }
 
   userList = this.dataBase.getUserData();

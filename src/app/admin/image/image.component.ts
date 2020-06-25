@@ -101,7 +101,7 @@ export class ImageComponent implements OnInit, AfterViewInit {
 
   getMatchedFlightNames() {
     this.matchedFlightNames = [];
-    for (var row of this.dataBase.flightList) {
+    for (var row of DataBaseService.flightList) {
       if (row.flightName.includes(this.searchFlightName)) {
         this.matchedFlightNames.push(row.flightName);
       }

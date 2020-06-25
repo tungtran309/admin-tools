@@ -68,7 +68,7 @@ export class ImageCompareComponent implements OnInit {
 
   getMatchedFlightNames() {
     this.matchedFlightNames = [];
-    for (var row of this.dataBase.flightList) {
+    for (var row of DataBaseService.flightList) {
       if (row.flightName.includes(this.searchFlightName)) {
         this.matchedFlightNames.push(row.flightName);
       }
@@ -94,7 +94,7 @@ export class ImageCompareComponent implements OnInit {
 
   getMatchedFlightNames2() {
     this.matchedFlightNames2 = [];
-    for (var row of this.dataBase.flightList) {
+    for (var row of DataBaseService.flightList) {
       if (row.flightName.includes(this.searchFlightName2)) {
         this.matchedFlightNames2.push(row.flightName);
       }

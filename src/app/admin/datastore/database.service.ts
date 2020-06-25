@@ -52,14 +52,16 @@ export interface DroneData {
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DataBaseService {
 
   public COLOR_STATUS = ["primary", "accent", "warn"] as const;
   public TEXT_STATUS = ["Đã hoàn thành", "Đang kiểm tra", "Đang thực hiện"] as const;
   public DRONE_STATUS = ["Sẵn sàng", "Đang sử dụng", "Đang bị hỏng"] as const;
 
-  assignmentList : Array<AssignmentData> = 
+  public static assignmentList : Array<AssignmentData> = 
     [{userId : 1, startDate : '21/05/2020', completeDate : '01/06/2020', location : "Đại học Bách Khoa", description : "Sửa dây điện", column : "N3E8", status : 0}
     ,{userId : 2, startDate : '23/05/2020', completeDate : '05/06/2020', location : "Cầu Vĩnh Tuy", description : "Thay cột mới", column : "P1Q2", status : 0}
     ,{userId : 2, startDate : '24/05/2020', completeDate : '07/06/2020', location : "Đại học Bách Khoa", description : "Sửa cột", column : "P1Q2", status : 0}
@@ -76,7 +78,7 @@ export class DataBaseService {
     ,{userId : 10, startDate : '19/05/2020', completeDate : '07/06/2020', location : "Đại học Bách Khoa", description : "Thay biến áp", column : "Q3T2", status : 0}
     ,{userId : 2, startDate : '01/06/2020', completeDate : '04/06/2020', location : "Đại học Xây Dựng", description : "Hàn mối nối", column : "Q3T2", status : 0}
     ,{userId : 5, startDate : '22/05/2020', completeDate : '', location : "Đại học Xây Dựng", description : "Hàn mối nối", column : "Q3T2", status : 1}]
-  userList : Array<UserData> = 
+    public static userList : Array<UserData> = 
     [{id : 1, image : 'assets/images/user_male_1.jpeg', email : 'nguyenvana@gmail.com', name : 'Nguyễn Văn A', age : 25, gender : "Nam", department : "Hai Bà Trưng", occupation : "Quản trị viên"}
     ,{id : 2, image : 'assets/images/user_female_1.jpeg',  email : 'hoangthib@gmail.com', name : 'Hoàng Thị B', age : 26, gender : "Nữ", department : "Ba Đình", occupation : "Quản trị viên"}
     ,{id : 3, image : 'assets/images/user_male_2.jpeg', email : 'nguyenvanc@gmail.com', name : 'Nguyễn Văn C', age : 25, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
@@ -93,7 +95,7 @@ export class DataBaseService {
     ,{id : 14, image : 'assets/images/user_female_4.jpeg', email : 'nguyenthiy@gmail.com', name : 'Nguyễn Thị Y', age : 26, gender : "Nữ", department : "Ba Đình", occupation : "Thợ điện"}
     ,{id : 15, image : 'assets/images/user_male_2.jpeg', email : 'nguyenvanz@gmail.com', name : 'Nguyễn Văn Z', age : 22, gender : "Nam", department : "Hai Bà Trưng", occupation : "Thợ điện"}
     ,{id : 16, image : 'assets/images/user_female_5.jpeg', email : 'caothie@gmail.com', name : 'Cao Thị E', gender : "Nữ", age : 28, department : "Hai Bà Trưng", occupation : "Quản trị viên"}]
-  droneList : Array<DroneData> = 
+    public static droneList : Array<DroneData> = 
     [{id : 1, model : 'Intel Aero 4', height : 150, weight : 1000, battery : 15000, flight_time : 2000, speed : 10, image : 'assets/images/drone1.jpg'},
     {id : 2, model : 'DJI Phantom 4', height : 200, weight : 900, battery : 10000, flight_time : 50, speed : 11, image : 'assets/images/drone2.jpeg'},
     {id : 3, model : 'Mini Drone Visual XS809HW', height : 170, weight : 1100, battery : 8000, flight_time : 90, speed : 10, image : 'assets/images/drone3.jpg'},
@@ -102,13 +104,13 @@ export class DataBaseService {
     {id : 6, model : 'DJI Mavic Pro 2', height : 165, weight : 800, battery : 10000, flight_time : 0, speed : 14, image : 'assets/images/drone6.jpeg'},
     {id : 7, model : 'CGAxis 3D', height : 178, weight : 1500, battery : 12000, flight_time : 500, speed : 10, image : 'assets/images/drone7.jpeg'},
     {id : 8, model : 'Quadcopter V1', height : 190 , weight : 1300, battery : 9500, flight_time : 400, speed : 11, image : 'assets/images/drone8.jpeg'}];
-  flightList : Array<FlightData> = 
+    public static flightList : Array<FlightData> = 
     [{id : 1, droneId : 1, date : '25/06/2020', flightName : 'Chuyến bay 1'},
     {id : 2, droneId : 2, date : '19/06/2020', flightName : 'Chuyến bay 2'},
     {id : 3, droneId : 3, date : '22/06/2020', flightName : 'Chuyến bay 3'},
     {id : 4, droneId : 4, date : '23/06/2020', flightName : 'Chuyến bay 4'},
     {id : 5, droneId : 5, date : '21/06/2020', flightName : 'Chuyến bay 5'}];
-  imageList : Array<ImageData> = 
+    public static imageList : Array<ImageData> = 
     [{imgSrc: 'assets/images/image1.jpeg', columnId : "N3E8", flightId : 1, location: 'Đại học Bách Khoa'},
     {imgSrc: 'assets/images/image2.jpeg', columnId : "P1Q2", flightId : 1, location: 'Cầu Vĩnh Tuy'},
     {imgSrc: 'assets/images/image3.jpeg', columnId : "N6F7", flightId : 1, location: 'Cầu Vĩnh Tuy'},
@@ -133,23 +135,23 @@ export class DataBaseService {
   }
 
   getImageData() : Array<ImageData> {
-    return this.imageList;
+    return DataBaseService.imageList;
   }
 
   getAssignmentData() : Array<AssignmentData> {
-    return this.assignmentList;
+    return DataBaseService.assignmentList;
   }
 
   getUserData() : Array<UserData> {
-    return this.userList;
+    return DataBaseService.userList;
   }
 
   getDroneData() : Array<DroneData> {
-    return this.droneList;
+    return DataBaseService.droneList;
   }
 
   getUserName(id : number) : String {
-    for (var user of this.userList) {
+    for (var user of DataBaseService.userList) {
       if (user.id == id) {
         return user.name;
       }
@@ -158,7 +160,7 @@ export class DataBaseService {
   }
 
   getDroneName(id : number) : String {
-    for (var drone of this.droneList) {
+    for (var drone of DataBaseService.droneList) {
       if (drone.id == id) {
         return drone.model;
       }
@@ -167,7 +169,7 @@ export class DataBaseService {
   }
 
   getDroneDataById(id : number) : DroneData {
-    for (var drone of this.droneList) {
+    for (var drone of DataBaseService.droneList) {
       if (drone.id == id) {
         return drone;
       }
@@ -176,7 +178,7 @@ export class DataBaseService {
   }
 
   updateDroneById(data : DroneData) {
-    for (var drone of this.droneList) {
+    for (var drone of DataBaseService.droneList) {
       if (drone.id == data.id) {
         drone = data;
         return;
@@ -185,12 +187,12 @@ export class DataBaseService {
   }
 
   addUser(newUser : UserData) {
-    newUser.id = this.userList[this.userList.length - 1].id + 1;
-    this.userList.push(newUser);
+    newUser.id = DataBaseService.userList[DataBaseService.userList.length - 1].id + 1;
+    DataBaseService.userList.push(newUser);
   }
 
   getUserDataById(id : number) : UserData {
-    for (var user of this.userList) {
+    for (var user of DataBaseService.userList) {
       if (user.id == id) {
         return user;
       }
@@ -199,7 +201,7 @@ export class DataBaseService {
   }
 
   updateUserById(data : UserData) {
-    for (var user of this.userList) {
+    for (var user of DataBaseService.userList) {
       if (user.id == data.id) {
         user = data;
         return;
@@ -208,30 +210,31 @@ export class DataBaseService {
   }
 
   deleteUser(user : UserData) {
-    const index = this.userList.indexOf(user, 0);
+    const index = DataBaseService.userList.indexOf(user, 0);
     if (index > -1) {
-        this.userList.splice(index, 1);
+        DataBaseService.userList.splice(index, 1);
+        console.log(DataBaseService.userList);
     } else {
       console.log('cant find user' + user);
     }
   }
 
   addDrone(newDrone : DroneData) {
-    newDrone.id = this.droneList[this.droneList.length - 1].id + 1;
-    this.droneList.push(newDrone);
+    newDrone.id = DataBaseService.droneList[DataBaseService.droneList.length - 1].id + 1;
+    DataBaseService.droneList.push(newDrone);
   }
 
   deleteDrone(drone : DroneData) {
-    const index = this.droneList.indexOf(drone, 0);
+    const index = DataBaseService.droneList.indexOf(drone, 0);
     if (index > -1) {
-        this.droneList.splice(index, 1);
+        DataBaseService.droneList.splice(index, 1);
     } else {
       console.log('cant find user' + drone);
     }
   }
 
   getDateByFlightId(id : number) {
-    for (var flight of this.flightList) {
+    for (var flight of DataBaseService.flightList) {
       if (flight.id == id) {
         return flight.date;
       }
@@ -239,9 +242,9 @@ export class DataBaseService {
   }
 
   getDroneNameByFlightId(id : number) {
-    for (var flight of this.flightList) {
+    for (var flight of DataBaseService.flightList) {
       if (flight.id == id) {
-        for (var drone of this.droneList) {
+        for (var drone of DataBaseService.droneList) {
           if (drone.id == flight.droneId) {
             return drone.model;
           }
@@ -253,10 +256,20 @@ export class DataBaseService {
   }
 
   getFlightNameByFlightId(id : number) {
-    for (var flight of this.flightList) {
+    for (var flight of DataBaseService.flightList) {
       if (flight.id == id) {
         return flight.flightName;
       }
     }
+  }
+
+  checkLogin(email : String, password : String) : UserData {
+    console.log(DataBaseService.userList);
+    for (var user of DataBaseService.userList) {
+      if (user.email == email) {
+        return user;
+      }
+    }
+    return null;
   }
 }

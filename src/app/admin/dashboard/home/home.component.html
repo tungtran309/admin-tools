@@ -1,15 +1,15 @@
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
   <div class="mb10" fxFlex="24" fxFlex.lt-lg="49">
-    <app-stat [bgClass]="'danger'" [icon]="'bookmarks'" [count]="5" [label]="'Chuyến bay mới!'"></app-stat>
+    <app-stat (click)="navigate('drone')" [bgClass]="'danger'" [icon]="'flight'" [count]="5" [label]="'Drone mới!'"></app-stat>
   </div>
   <div class="mb10" fxFlex="24" fxFlex.lt-lg="49">
-    <app-stat [bgClass]="'warn'" [icon]="'view_list'" [count]="12" [label]="'Nhân viên mới!'"></app-stat>
+    <app-stat (click)="navigate('user')" [bgClass]="'warn'" [icon]="'account_circle'" [count]="12" [label]="'Nhân viên mới!'"></app-stat>
   </div>
   <div class="mb10" fxFlex="24" fxFlex.lt-lg="49">
-    <app-stat [bgClass]="'success'" [icon]="'shopping_cart'" [count]="7" [label]="'Tasks được hoàn thành!'"></app-stat>
+    <app-stat (click)="navigate('assignment')" [bgClass]="'success'" [icon]="'assignment_turned_in'" [count]="7" [label]="'Tasks được hoàn thành!'"></app-stat>
   </div>
   <div class="mb10" fxFlex="24" fxFlex.lt-lg="49">
-    <app-stat [bgClass]="'info'" [icon]="'contact_support'" [count]="138" [label]="'Ảnh mới!'"></app-stat>
+    <app-stat (click)="navigate('image')" [bgClass]="'info'" [icon]="'image'" [count]="138" [label]="'Ảnh mới!'"></app-stat>
   </div>
 </div>
 

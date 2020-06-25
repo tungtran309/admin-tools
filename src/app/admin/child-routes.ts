@@ -1,15 +1,19 @@
+import { AdminGuard } from '../core/admin.guard';
+
 export const childRoutes = [
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate : [AdminGuard],
     data: { icon: 'home', text: 'Tổng quan' }
   },
   {
     path: 'drone',
     loadChildren: () =>
       import('./drone/drone.module').then(m => m.DroneModule),
-    data: { icon: 'flight', text: 'Quản lý drone' }
+    data: { icon: 'flight', text: 'Quản lý drone' },
+    canActivate : [AdminGuard]
   },
   {
     path: 'user',
@@ -20,13 +24,15 @@ export const childRoutes = [
   {
     path: 'assignment',
     loadChildren: () => import('./assignment/assignment.module').then(m => m.AssignmentModule),
-    data: { icon: 'assignment', text: 'Quản lý công việc' }
+    data: { icon: 'assignment', text: 'Quản lý công việc' },
+    canActivate : [AdminGuard]
   },
   {
     path: 'image',
     loadChildren: () =>
       import('./image/image.module').then(m => m.ImageModule),
-    data: { icon: 'image', text: 'Quản lý ảnh chụp' }
+    data: { icon: 'image', text: 'Quản lý ảnh chụp' },
+    canActivate : [AdminGuard]
   }
   // {
   //   path: 'material',
@@ -51,3 +57,5 @@ export const childRoutes = [
   //   data: { icon: 'place', text: 'Google Maps' }
   // }
 ];
+
+export const notAdminRoutes = [];
