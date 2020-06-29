@@ -3,5 +3,14 @@
     "default": "angular-material-admin",
     "staging": "angular-project-51bf8",
     " ": "angular-project-51bf8"
+  },
+  "targets": {
+    "angular-project-51bf8": {
+      "hosting": {
+        "angular-material-admin": [
+          "angular-project-51bf8"
+        ]
+      }
+    }
   }
 }

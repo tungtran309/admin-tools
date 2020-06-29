@@ -147,6 +147,7 @@ export class DroneDetailComponent {
 
   saveData() {
     this.dataBase.updateDroneById(this.data);
+    this.notificationService.showSuccess("Lưu thành công", "");
     this.router.navigate(['/drone']);
   }
 
