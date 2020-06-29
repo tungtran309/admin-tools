@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DroneData, DataBaseService } from '../../datastore/database.service';
+import { DroneData, DataBaseService, ImageData } from '../../datastore/database.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/shared/notification.service';
@@ -152,8 +152,10 @@ export class DroneDetailComponent {
   }
 
   public id: string;
+  images: Array<ImageData> = [];
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.images = this.dataBase.getImageDataFromDroneId(+this.id);
     this.data = this.dataBase.getDroneDataById(+this.id);
     console.log(this.dataBase.COLOR_STATUS[1]);
     if (this.data.id % 6 == 1) {

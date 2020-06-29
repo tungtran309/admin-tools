@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserData, DataBaseService } from '../../datastore/database.service';
+import { UserData, DataBaseService, AssignmentData } from '../../datastore/database.service';
 import { FormGroup, Validators, FormControl, FormBuilder, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 
@@ -70,14 +74,24 @@ export class UserProfileComponent implements OnInit {
     console.log(e);
   }
 
+  displayedColumns = ['userId', 'startDate', 'completeDate', 'location', 'description', 'column', 'status'];
+  dataSource: Array<AssignmentData>;
+  dataTable : MatTableDataSource<AssignmentData>
+  selection: SelectionModel<AssignmentData>;
+  
   public data : UserData;
   public userForm : FormGroup;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(public dataBase : DataBaseService,
               private route: ActivatedRoute,
               private router : Router,
               private notificationService : NotificationService) {}
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.selection = new SelectionModel<AssignmentData>(true, []);
+    this.dataSource = this.dataBase.getAssignmentDataByUserId(+this.id);
+    this.dataTable = new MatTableDataSource(this.dataSource);
     this.data = this.dataBase.getUserDataById(+this.id);
     console.log(this.data);
     this.userForm = new FormGroup({
@@ -90,6 +104,11 @@ export class UserProfileComponent implements OnInit {
       department : new FormControl('', [Validators.required])
     });
     console.log(this.id);
+  }
+
+  ngAfterViewInit() {
+    this.dataTable.paginator = this.paginator;
+    this.dataTable.sort = this.sort;
   }
 
   saveUser(): void {

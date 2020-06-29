@@ -84,6 +84,56 @@
 
 <br>
 
+<div class="add-form" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutAlign="space-between stretch">
+  <table mat-table [dataSource]="dataTable" matSort class="w-100">
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Người thực hiện </th>
+      <td mat-cell *matCellDef="let row"> {{this.dataBase.getUserName(row.userId)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày bắt đầu </th>
+      <td mat-cell *matCellDef="let row"> {{row.startDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="completeDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày kết thúc </th>
+      <td mat-cell *matCellDef="let row"> {{row.completeDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Địa điểm </th>
+      <td mat-cell *matCellDef="let row"> {{row.location}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="column">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vị trí cột </th>
+      <td mat-cell *matCellDef="let row"> {{row.column}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Miêu tả </th>
+      <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Trạng thái </th>
+      <td mat-cell *matCellDef="let row" >
+           <button mat-raised-button color="{{this.dataBase.COLOR_STATUS[row.status]}}" style="width: 100%;">{{this.dataBase.TEXT_STATUS[row.status]}}</button>
+      </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Trạng thái </th>
+      <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+  </table>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+
 <div mat-dialog-actions>
   <button mat-raised-button class="add-form" [disabled]="userForm.invalid" color="primary" (click)="saveUser()">Lưu</button>
 </div>

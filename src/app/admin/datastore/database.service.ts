@@ -137,9 +137,29 @@ export class DataBaseService {
   getImageData() : Array<ImageData> {
     return DataBaseService.imageList;
   }
+  getImageDataFromDroneId(droneId : number) : Array<ImageData> {
+    let res : Array<ImageData> = [];
+    for (var image of DataBaseService.imageList) {
+        let imageDroneId = this.getDroneIdByFlightId(image.flightId);
+        if (imageDroneId == droneId) {
+          res.push(image);
+        }
+    }
+    return res;
+  }
 
   getAssignmentData() : Array<AssignmentData> {
     return DataBaseService.assignmentList;
+  }
+
+  getAssignmentDataByUserId(id : number) : Array<AssignmentData> {
+    let res : Array<AssignmentData> = [];
+    for (var assignment of DataBaseService.assignmentList) {
+      if (assignment.userId == id) {
+        res.push(assignment);
+      }
+    }
+    return res;
   }
 
   getUserData() : Array<UserData> {
@@ -239,6 +259,15 @@ export class DataBaseService {
         return flight.date;
       }
     }
+  }
+
+  getDroneIdByFlightId(id : number) {
+    for (var flight of DataBaseService.flightList) {
+      if (flight.id == id) {
+        return flight.droneId;
+      }
+    }
+    return null;
   }
 
   getDroneNameByFlightId(id : number) {
